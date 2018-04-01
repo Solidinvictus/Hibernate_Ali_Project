@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26-feb-2018 13:27:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojos_BBDD1.Provincia" table="provincia" catalog="ciudades" optimistic-lock="version">
+        <id name="codProv" type="int">
+            <column name="cod_prov" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="pais" class="Pojos_BBDD1.Pais" fetch="select">
+            <column name="Cod_pais" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" />
+        </property>
+        <set name="ciudads" table="ciudad" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cod_prov" not-null="true" />
+            </key>
+            <one-to-many class="Pojos_BBDD1.Ciudad" />
+        </set>
+    </class>
+</hibernate-mapping>
